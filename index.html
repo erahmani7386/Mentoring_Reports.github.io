@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח חניכה רבעוני - קומה שלמה</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Heebo', sans-serif;
+            direction: rtl;
+            text-align: right;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+        }
+
+        h1, h2, h3 {
+            color: #1a237e; /* כחול כהה */
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            color: #3949ab; /* כחול בינוני */
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 1.2em;
+            font-weight: 500;
+            color: #424242;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        select {
+            width: calc(100% - 22px); /* פחות ריפוד וגבול */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1em;
+            box-sizing: border-box;
+            background-color: #fdfdfd;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #3f51b5; /* כחול חזק בפוקוס */
+            outline: none;
+            box-shadow: 0 0 5px rgba(63, 81, 181, 0.3);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin-left: 8px; /* מרווח בין התיבה לטקסט */
+        }
+
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .radio-item input[type="radio"] {
+            margin-left: 8px;
+        }
+
+        .note {
+            font-size: 0.9em;
+            color: #777;
+            margin-top: 5px;
+            padding-right: 5px;
+        }
+
+        .add-mentee-button {
+            display: block;
+            width: fit-content;
+            margin: 25px auto 0;
+            padding: 12px 25px;
+            background-color: #4CAF50; /* ירוק */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-mentee-button:hover {
+            background-color: #45a049;
+        }
+
+        .submit-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #3f51b5; /* כחול ראשי */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-top: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background-color: #303f9f;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #616161;
+            line-height: 1.5;
+            padding-top: 20px;
+            border-top: 1px dashed #cccccc;
+        }
+
+        /* Responsive adjustments for mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                margin: 10px auto;
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.2em;
+            }
+            .checkbox-group, .radio-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+            input[type="text"], input[type="number"], textarea, select {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>דוח חניכה רבעוני - תוכנית קומה שלמה</h1>
+        <p style="text-align: center; margin-bottom: 20px; line-height: 1.6;">
+            <strong>ייעוד:</strong> כלי ניהול עצמי למפקד החונך וכלי בקרה תמציתי לדרג הפיקודי, המאפשר שיקוף ושיפור תהליכי החניכה השגרתית ביחידה.<br>
+            <strong>הוראות מילוי:</strong> נא למלא אחת לרבעון, **זמן מילוי מוערך כ-15 דקות**, עד ה-10 בחודש שלאחר סיום הרבעון.
+        </p>
+
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="report_quarter"><strong>דוח חניכה רבעוני:</strong></label>
+                <select id="report_quarter" name="report_quarter" required>
+                    <option value="">בחר רבעון</option>
+                    <option value="1">רבעון 1 (ינואר-מרץ)</option>
+                    <option value="2">רבעון 2 (אפריל-יוני)</option>
+                    <option value="3">רבעון 3 (יולי-ספטמבר)</option>
+                    <option value="4">רבעון 4 (אוקטובר-דצמבר)</option>
+                </select>
+                <select id="report_year" name="report_year" required>
+                    <option value="">בחר שנה</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                </select>
+            </div>
+
+            <hr>
+            <h2>חלק א': פרטי המפקד החונך והיחידה</h2>
+
+            <div class="form-group">
+                <label for="mentor_name"><strong>שם מלא:</strong></label>
+                <input type="text" id="mentor_name" name="mentor_name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mentor_rank"><strong>דרגה:</strong></label>
+                <select id="mentor_rank" name="mentor_rank" required>
+                    <option value="">בחר דרגה</option>
+                    <option value="סרן">סרן</option>
+                    <option value="רסן">רס"ן</option>
+                    <option value="סאל">סא"ל</option>
+                    <option value="אלם">אל"ם</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="mentor_role"><strong>תפקיד:</strong></label>
+                <select id="mentor_role" name="mentor_role" required>
+                    <option value="">בחר תפקיד</option>
+                    <option value="קצמח">קצמ"ח</option>
+                    <option value="מפקד דבורה">מפקד דבורה</option>
+                    <option value="מפקד סטיל">מפקד סטי"ל</option>
+                    <option value="מסר">מס"ר</option>
+                    <option value="מפלג ים">מפל"ג ים</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="unit_name"><strong>שם היחידה:</strong></label>
+                <select id="unit_name" name="unit_name" required>
+                    <option value="">בחר יחידה</option>
+                    <option value="שייטת 3">שייטת 3</option>
+                    <option value="שייטת 7">שייטת 7</option>
+                    <option value="פלגה 914">פלגה 914</option>
+                    <option value="פלגה 915">פלגה 915</option>
+                    <option value="פלגה 916">פלגה 916</option>
+                    <option value="אא">א"א</option>
+                </select>
+            </div>
+
+            <hr>
+            <h2>חלק ב': פירוט מפגשי חניכה פורמליים ייעודיים (ברבעון הנוכחי)</h2>
+            <p class="note">אנא פרט עבור כל קצין נחנך עימו קיימתם מפגשי חניכה פורמליים ייעודיים ברבעון זה. מפגשים אלו נועדו להעמיק את החניכה המתקיימת בשגרה, והם כאלו בהם היה ברור לשני הצדדים, ובעיקר לנחנך, כי מדובר בחלק מתהליך חניכה מובנה הממוקד בפיתוחו האישי.</p>
+
+            <div id="mentees_container">
+                <div class="mentee-section">
+                    <h3>קצין נחנך 1</h3>
+                    <div class="form-group">
+                        <label for="mentee_name_1"><strong>שם מלא:</strong></label>
+                        <input type="text" id="mentee_name_1" name="mentee_name_1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mentee_role_1"><strong>תפקיד קצין נחנך:</strong></label>
+                        <select id="mentee_role_1" name="mentee_role_1" required>
+                            <option value="">בחר תפקיד</option>
+                            <option value="סגן קצמח">סגן קצמ"ח</option>
+                            <option value="סגמד">סגמ"ד</option>
+                            <option value="קצמח">קצמ"ח</option>
+                            <option value="מפקד דבורה">מפקד דבורה</option>
+                            <option value="מפקד סטיל">מפקד סטי"ל</option>
+                            <option value="מסר">מס"ר</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mentee_meetings_1"><strong>מספר מפגשי חניכה ייעודיים שבוצעו עימו ברבעון זה:</strong></label>
+                        <input type="number" id="mentee_meetings_1" name="mentee_meetings_1" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>נושאי החניכה העיקריים שנדונו עימו (ניתן לבחור מתוך הרשימה ו/או לפרט חופשי):</strong></label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_topics_1" value="לחץ_קבלת_החלטות"> <label>התמודדות עם לחץ / קבלת החלטות במצבי אמת</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_topics_1" value="אחריות_בעלות"> <label>חיזוק אחריות אישית / בעלות על משימה</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_topics_1" value="מקצועיות_כשירות"> <label>פיתוח מקצועיות / כשירות מבצעית</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_topics_1" value="מנהיגות_ניהול_כפיפים"> <label>מנהיגות בקרב צוות / ניהול כפיפים</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_topics_1" value="חוסן_מנטלי"> <label>פיתוח חוסן מנטלי / התמודדות עם אתגרים אישיים</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_topics_1" value="תקשורת_משוב"> <label>שיפור יכולות תקשורת / משוב</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_topics_1" value="ערכי_פיקודי"> <label>פיתוח ערכי / פיקודי</label></div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="mentee_topics_1" value="אחר"> <label>אחר (פרט בקצרה):</label>
+                                <input type="text" name="mentee_topics_other_1" style="width: auto; flex-grow: 1;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>האם תהליך החניכה התמקד ב"חליפה האישית" של קצין זה, תוך התייחסות לנקודות החוזק הייחודיות לו ולפערים שזוהו, באופן שמותאם אישית לצרכיו וסגנון למידתו?</strong></label>
+                        <div class="radio-group">
+                            <div class="radio-item"><input type="radio" name="mentee_personal_fit_1" value="כן"> <label>כן</label></div>
+                            <div class="radio-item"><input type="radio" name="mentee_personal_fit_1" value="במידה_רבה"> <label>במידה רבה</label></div>
+                            <div class="radio-item"><input type="radio" name="mentee_personal_fit_1" value="במידה_חלקית"> <label>במידה חלקית</label></div>
+                            <div class="radio-item"><input type="radio" name="mentee_personal_fit_1" value="לא"> <label>לא</label></div>
+                        </div>
+                        <p class="note">הסבר קצר (אופציונלי):</p>
+                        <textarea name="mentee_personal_fit_explanation_1"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>האם נקבעו יעדי התקדמות אישיים ומדידים עבורו?</strong></label>
+                        <div class="radio-group">
+                            <div class="radio-item"><input type="radio" name="mentee_goals_set_1" value="כן"> <label>כן</label></div>
+                            <div class="radio-item"><input type="radio" name="mentee_goals_set_1" value="לא"> <label>לא</label></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>האם תהליך החניכה הסתיים, והקצין עובר לתפקיד/שלב המשך?</strong></label>
+                        <div class="radio-group">
+                            <div class="radio-item"><input type="radio" name="mentee_process_ended_1" value="כן"> <label>כן</label></div>
+                            <div class="radio-item"><input type="radio" name="mentee_process_ended_1" value="לא"> <label>לא</label></div>
+                            <div class="radio-item"><input type="radio" name="mentee_process_ended_1" value="טרם_נקבע"> <label>טרם נקבע</label></div>
+                        </div>
+                        <p class="note">אם כן, מהן המלצותיך המעשיות לחונך הבא לטובת המשך תהליך חניכה רציף?</p>
+                        <textarea name="mentee_recommendations_1" rows="1"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>תוכנית עבודה ופיתוח לרבעון הבא (עבור קצין זה):</strong></label>
+                        <div class="radio-group">
+                           <div class="radio-item"><label for="mentee_future_meetings_1">כמה מפגשים ייעודיים הינך מתכנן לקיים עימו ברבעון הבא?</label> <input type="number" id="mentee_future_meetings_1" name="mentee_future_meetings_1" min="0"></div>
+                        </div>
+                        <label>נושאי ליבה מתוכננים למפגשים אלו (ניתן לבחור מתוך הרשימה ו/או לפרט חופשי):</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_1" value="לחץ_קבלת_החלטות"> <label>התמודדות עם לחץ / קבלת החלטות</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_1" value="אחריות_בעלות"> <label>חיזוק אחריות אישית / בעלות</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_1" value="מקצועיות_כשירות"> <label>פיתוח מקצועיות / כשירות מבצעית</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_1" value="מנהיגות_ניהול_כפיפים"> <label>מנהיגות בקרב צוות / ניהול כפיפים</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_1" value="חוסן_מנטלי"> <label>פיתוח חוסן מנטלי / התמודדות עם אתגרים אישיים</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_1" value="תקשורת_משוב"> <label>שיפור יכולות תקשורת / משוב</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_1" value="ערכי_פיקודי"> <label>פיתוח ערכי / פיקודי</label></div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="mentee_future_topics_other_1" value="אחר"> <label>אחר (פרט בקצרה):</label>
+                                <input type="text" name="mentee_future_topics_other_text_1" style="width: auto; flex-grow: 1;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mentee-section" style="margin-top: 40px; padding-top: 20px; border-top: 1px dashed #ccc;">
+                    <h3>קצין נחנך 2</h3>
+                    <div class="form-group">
+                        <label for="mentee_name_2"><strong>שם מלא:</strong></label>
+                        <input type="text" id="mentee_name_2" name="mentee_name_2" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mentee_role_2"><strong>תפקיד קצין נחנך:</strong></label>
+                        <select id="mentee_role_2" name="mentee_role_2" required>
+                            <option value="">בחר תפקיד</option>
+                            <option value="סגן קצמח">סגן קצמ"ח</option>
+                            <option value="סגמד">סגמ"ד</option>
+                            <option value="קצמח">קצמ"ח</option>
+                            <option value="מפקד דבורה">מפקד דבורה</option>
+                            <option value="מפקד סטיל">מפקד סטי"ל</option>
+                            <option value="מסר">מס"ר</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mentee_meetings_2"><strong>מספר מפגשי חניכה ייעודיים שבוצעו עימו ברבעון זה:</strong></label>
+                        <input type="number" id="mentee_meetings_2" name="mentee_meetings_2" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>נושאי החניכה העיקריים שנדונו עימו (ניתן לבחור מתוך הרשימה ו/או לפרט חופשי):</strong></label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_topics_2" value="לחץ_קבלת_החלטות"> <label>התמודדות עם לחץ / קבלת החלטות במצבי אמת</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_topics_2" value="אחריות_בעלות"> <label>חיזוק אחריות אישית / בעלות על משימה</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_topics_2" value="מקצועיות_כשירות"> <label>פיתוח מקצועיות / כשירות מבצעית</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_topics_2" value="מנהיגות_ניהול_כפיפים"> <label>מנהיגות בקרב צוות / ניהול כפיפים</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_topics_2" value="חוסן_מנטלי"> <label>פיתוח חוסן מנטלי / התמודדות עם אתגרים אישיים</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_topics_2" value="תקשורת_משוב"> <label>שיפור יכולות תקשורת / משוב</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_topics_2" value="ערכי_פיקודי"> <label>פיתוח ערכי / פיקודי</label></div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="mentee_topics_2" value="אחר"> <label>אחר (פרט בקצרה):</label>
+                                <input type="text" name="mentee_topics_other_2" style="width: auto; flex-grow: 1;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>האם תהליך החניכה התמקד ב"חליפה האישית" של קצין זה, תוך התייחסות לנקודות החוזק הייחודיות לו ולפערים שזוהו, באופן שמותאם אישית לצרכיו וסגנון למידתו?</strong></label>
+                        <div class="radio-group">
+                            <div class="radio-item"><input type="radio" name="mentee_personal_fit_2" value="כן"> <label>כן</label></div>
+                            <div class="radio-item"><input type="radio" name="mentee_personal_fit_2" value="במידה_רבה"> <label>במידה רבה</label></div>
+                            <div class="radio-item"><input type="radio" name="mentee_personal_fit_2" value="במידה_חלקית"> <label>במידה חלקית</label></div>
+                            <div class="radio-item"><input type="radio" name="mentee_personal_fit_2" value="לא"> <label>לא</label></div>
+                        </div>
+                        <p class="note">הסבר קצר (אופציונלי):</p>
+                        <textarea name="mentee_personal_fit_explanation_2"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>האם נקבעו יעדי התקדמות אישיים ומדידים עבורו?</strong></label>
+                        <div class="radio-group">
+                            <div class="radio-item"><input type="radio" name="mentee_goals_set_2" value="כן"> <label>כן</label></div>
+                            <div class="radio-item"><input type="radio" name="mentee_goals_set_2" value="לא"> <label>לא</label></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>האם תהליך החניכה הסתיים, והקצין עובר לתפקיד/שלב המשך?</strong></label>
+                        <div class="radio-group">
+                            <div class="radio-item"><input type="radio" name="mentee_process_ended_2" value="כן"> <label>כן</label></div>
+                            <div class="radio-item"><input type="radio" name="mentee_process_ended_2" value="לא"> <label>לא</label></div>
+                            <div class="radio-item"><input type="radio" name="mentee_process_ended_2" value="טרם_נקבע"> <label>טרם נקבע</label></div>
+                        </div>
+                        <p class="note">אם כן, מהן המלצותיך המעשיות לחונך הבא לטובת המשך תהליך חניכה רציף?</p>
+                        <textarea name="mentee_recommendations_2" rows="1"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>תוכנית עבודה ופיתוח לרבעון הבא (עבור קצין זה):</strong></label>
+                        <div class="radio-group">
+                           <div class="radio-item"><label for="mentee_future_meetings_2">כמה מפגשים ייעודיים הינך מתכנן לקיים עימו ברבעון הבא?</label> <input type="number" id="mentee_future_meetings_2" name="mentee_future_meetings_2" min="0"></div>
+                        </div>
+                        <label>נושאי ליבה מתוכננים למפגשים אלו (ניתן לבחור מתוך הרשימה ו/או לפרט חופשי):</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_2" value="לחץ_קבלת_החלטות"> <label>התמודדות עם לחץ / קבלת החלטות</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_2" value="אחריות_בעלות"> <label>חיזוק אחריות אישית / בעלות</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_2" value="מקצועיות_כשירות"> <label>פיתוח מקצועיות / כשירות מבצעית</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_2" value="מנהיגות_ניהול_כפיפים"> <label>מנהיגות בקרב צוות / ניהול כפיפים</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_2" value="חוסן_מנטלי"> <label>פיתוח חוסן מנטלי / התמודדות עם אתגרים אישיים</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_2" value="תקשורת_משוב"> <label>שיפור יכולות תקשורת / משוב</label></div>
+                            <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_2" value="ערכי_פיקודי"> <label>פיתוח ערכי / פיקודי</label></div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="mentee_future_topics_other_2" value="אחר"> <label>אחר (פרט בקצרה):</label>
+                                <input type="text" name="mentee_future_topics_other_text_2" style="width: auto; flex-grow: 1;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="add-mentee-button" onclick="addMenteeSection()">+ הוסף קצין נחנך נוסף</button>
+            </div>
+
+
+            <hr>
+            <h2>חלק ג': הערכה עצמית כוללת ותוכניות מערכתיות</h2>
+
+            <div class="form-group">
+                <label><strong>בסולם 1 (נמוך מאוד) עד 5 (גבוה מאוד), איך היית מדרג את איכות ואפקטיביות תהליכי החניכה הכלליים שאתה מקדם ביחידתך ברבעון זה?</strong></label>
+                <div class="radio-group">
+                    <div class="radio-item"><input type="radio" name="overall_quality" value="1" required> <label>1</label></div>
+                    <div class="radio-item"><input type="radio" name="overall_quality" value="2"> <label>2</label></div>
+                    <div class="radio-item"><input type="radio" name="overall_quality" value="3"> <label>3</label></div>
+                    <div class="radio-item"><input type="radio" name="overall_quality" value="4"> <label>4</label></div>
+                    <div class="radio-item"><input type="radio" name="overall_quality" value="5"> <label>5</label></div>
+                </div>
+                <p class="note">על מה דירוג זה מתבסס? (ציין בקצרה את הנקודות המרכזיות בהן התמקד תהליך החניכה וכיצד הוא בא לידי ביטוי בשטח. דגש על יוזמות ופעולות מעבר למפגשים פורמליים):</p>
+                <textarea name="overall_quality_explanation" rows="2"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label><strong>מה נדרש על מנת לשפר את תהליכי החניכה ביחידתך, והאם קיבלת את הכלים והתמיכה הראויה לביצוע משימת החניכה באופן מיטבי?</strong></label>
+                <textarea name="improvement_needs" rows="2"></textarea>
+            </div>
+
+            <button type="submit" class="submit-button">שלח דוח חניכה רבעוני</button>
+        </form>
+
+        <div class="footer-note">
+            <p><strong>תודה רבה על השקעת זמנך ומאמציך בפיתוח דור המפקדים הבא של זרוע הים. מחויבותך האישית היא אבן יסוד בעוצמתה של הזרוע וביטחונה של מדינת ישראל.</strong></p>
+        </div>
+    </div>
+
+    <script>
+        // Basic JavaScript for dynamic adding of mentee sections (for demo purposes)
+        let menteeCount = 2; // Start with 2 pre-existing sections
+
+        function addMenteeSection() {
+            menteeCount++;
+            const container = document.getElementById('mentees_container');
+            const newMenteeSection = document.createElement('div');
+            newMenteeSection.classList.add('mentee-section');
+            newMenteeSection.style.marginTop = '40px';
+            newMenteeSection.style.paddingTop = '20px';
+            newMenteeSection.style.borderTop = '1px dashed #ccc';
+            newMenteeSection.innerHTML = `
+                <h3>קצין נחנך ${menteeCount}</h3>
+                <div class="form-group">
+                    <label for="mentee_name_${menteeCount}"><strong>שם מלא:</strong></label>
+                    <input type="text" id="mentee_name_${menteeCount}" name="mentee_name_${menteeCount}" required>
+                </div>
+                <div class="form-group">
+                    <label for="mentee_role_${menteeCount}"><strong>תפקיד קצין נחנך:</strong></label>
+                    <select id="mentee_role_${menteeCount}" name="mentee_role_${menteeCount}" required>
+                        <option value="">בחר תפקיד</option>
+                        <option value="סגן קצמח">סגן קצמ"ח</option>
+                        <option value="סגמד">סגמ"ד</option>
+                        <option value="קצמח">קצמ"ח</option>
+                        <option value="מפקד דבורה">מפקד דבורה</option>
+                        <option value="מפקד סטיל">מפקד סטי"ל</option>
+                        <option value="מסר">מס"ר</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mentee_meetings_${menteeCount}"><strong>מספר מפגשי חניכה ייעודיים שבוצעו עימו ברבעון זה:</strong></label>
+                    <input type="number" id="mentee_meetings_${menteeCount}" name="mentee_meetings_${menteeCount}" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label><strong>נושאי החניכה העיקריים שנדונו עימו (ניתן לבחור מתוך הרשימה ו/או לפרט חופשי):</strong></label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_topics_${menteeCount}" value="לחץ_קבלת_החלטות"> <label>התמודדות עם לחץ / קבלת החלטות במצבי אמת</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_topics_${menteeCount}" value="אחריות_בעלות"> <label>חיזוק אחריות אישית / בעלות על משימה</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_topics_${menteeCount}" value="מקצועיות_כשירות"> <label>פיתוח מקצועיות / כשירות מבצעית</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_topics_${menteeCount}" value="מנהיגות_ניהול_כפיפים"> <label>מנהיגות בקרב צוות / ניהול כפיפים</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_topics_${menteeCount}" value="חוסן_מנטלי"> <label>פיתוח חוסן מנטלי / התמודדות עם אתגרים אישיים</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_topics_${menteeCount}" value="תקשורת_משוב"> <label>שיפור יכולות תקשורת / משוב</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_topics_${menteeCount}" value="ערכי_פיקודי"> <label>פיתוח ערכי / פיקודי</label></div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="mentee_topics_${menteeCount}" value="אחר"> <label>אחר (פרט בקצרה):</label>
+                            <input type="text" name="mentee_topics_other_${menteeCount}" style="width: auto; flex-grow: 1;">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label><strong>האם תהליך החניכה התמקד ב"חליפה האישית" של קצין זה, תוך התייחסות לנקודות החוזק הייחודיות לו ולפערים שזוהו, באופן שמותאם אישית לצרכיו וסגנון למידתו?</strong></label>
+                    <div class="radio-group">
+                        <div class="radio-item"><input type="radio" name="mentee_personal_fit_${menteeCount}" value="כן"> <label>כן</label></div>
+                        <div class="radio-item"><input type="radio" name="mentee_personal_fit_${menteeCount}" value="במידה_רבה"> <label>במידה רבה</label></div>
+                        <div class="radio-item"><input type="radio" name="mentee_personal_fit_${menteeCount}" value="במידה_חלקית"> <label>במידה חלקית</label></div>
+                        <div class="radio-item"><input type="radio" name="mentee_personal_fit_${menteeCount}" value="לא"> <label>לא</label></div>
+                    </div>
+                    <p class="note">הסבר קצר (אופציונלי):</p>
+                    <textarea name="mentee_personal_fit_explanation_${menteeCount}"></textarea>
+                </div>
+                <div class="form-group">
+                    <label><strong>האם נקבעו יעדי התקדמות אישיים ומדידים עבורו?</strong></label>
+                    <div class="radio-group">
+                        <div class="radio-item"><input type="radio" name="mentee_goals_set_${menteeCount}" value="כן"> <label>כן</label></div>
+                        <div class="radio-item"><input type="radio" name="mentee_goals_set_${menteeCount}" value="לא"> <label>לא</label></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label><strong>האם תהליך החניכה הסתיים, והקצין עובר לתפקיד/שלב המשך?</strong></label>
+                    <div class="radio-group">
+                        <div class="radio-item"><input type="radio" name="mentee_process_ended_${menteeCount}" value="כן"> <label>כן</label></div>
+                        <div class="radio-item"><input type="radio" name="mentee_process_ended_${menteeCount}" value="לא"> <label>לא</label></div>
+                        <div class="radio-item"><input type="radio" name="mentee_process_ended_${menteeCount}" value="טרם_נקבע"> <label>טרם נקבע</label></div>
+                    </div>
+                    <p class="note">אם כן, מהן המלצותיך המעשיות לחונך הבא לטובת המשך תהליך חניכה רציף?</p>
+                    <textarea name="mentee_recommendations_${menteeCount}" rows="1"></textarea>
+                </div>
+                <div class="form-group">
+                    <label><strong>תוכנית עבודה ופיתוח לרבעון הבא (עבור קצין זה):</strong></label>
+                    <div class="radio-group">
+                       <div class="radio-item"><label for="mentee_future_meetings_${menteeCount}">כמה מפגשים ייעודיים הינך מתכנן לקיים עימו ברבעון הבא?</label> <input type="number" id="mentee_future_meetings_${menteeCount}" name="mentee_future_meetings_${menteeCount}" min="0"></div>
+                    </div>
+                    <label>נושאי ליבה מתוכננים למפגשים אלו (ניתן לבחור מתוך הרשימה ו/או לפרט חופשי):</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_${menteeCount}" value="לחץ_קבלת_החלטות"> <label>התמודדות עם לחץ / קבלת החלטות</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_${menteeCount}" value="אחריות_בעלות"> <label>חיזוק אחריות אישית / בעלות</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_${menteeCount}" value="מקצועיות_כשירות"> <label>פיתוח מקצועיות / כשירות מבצעית</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_${menteeCount}" value="מנהיגות_ניהול_כפיפים"> <label>מנהיגות בקרב צוות / ניהול כפיפים</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_${menteeCount}" value="חוסן_מנטלי"> <label>פיתוח חוסן מנטלי / התמודדות עם אתגרים אישיים</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_${menteeCount}" value="תקשורת_משוב"> <label>שיפור יכולות תקשורת / משוב</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_${menteeCount}" value="ערכי_פיקודי"> <label>פיתוח ערכי / פיקודי</label></div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="mentee_future_topics_other_${menteeCount}" value="אחר"> <label>אחר (פרט בקצרה):</label>
+                            <input type="text" name="mentee_future_topics_other_text_${menteeCount}" style="width: auto; flex-grow: 1;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="add-mentee-button" onclick="addMenteeSection()">+ הוסף קצין נחנך נוסף</button>
+
+
+            <hr>
+            <h2>חלק ג': הערכה עצמית כוללת ותוכניות מערכתיות</h2>
+
+            <div class="form-group">
+                <label><strong>בסולם 1 (נמוך מאוד) עד 5 (גבוה מאוד), איך היית מדרג את איכות ואפקטיביות תהליכי החניכה הכלליים שאתה מקדם ביחידתך ברבעון זה?</strong></label>
+                <div class="radio-group">
+                    <div class="radio-item"><input type="radio" name="overall_quality" value="1" required> <label>1</label></div>
+                    <div class="radio-item"><input type="radio" name="overall_quality" value="2"> <label>2</label></div>
+                    <div class="radio-item"><input type="radio" name="overall_quality" value="3"> <label>3</label></div>
+                    <div class="radio-item"><input type="radio" name="overall_quality" value="4"> <label>4</label></div>
+                    <div class="radio-item"><input type="radio" name="overall_quality" value="5"> <label>5</label></div>
+                </div>
+                <p class="note">על מה דירוג זה מתבסס? (ציין בקצרה את הנקודות המרכזיות בהן התמקד תהליך החניכה וכיצד הוא בא לידי ביטוי בשטח. דגש על יוזמות ופעולות מעבר למפגשים פורמליים):</p>
+                <textarea name="overall_quality_explanation" rows="2"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label><strong>מה נדרש על מנת לשפר את תהליכי החניכה ביחידתך, והאם קיבלת את הכלים והתמיכה הראויה לביצוע משימת החניכה באופן מיטבי?</strong></label>
+                <textarea name="improvement_needs" rows="2"></textarea>
+            </div>
+
+            <button type="submit" class="submit-button">שלח דוח חניכה רבעוני</button>
+        </form>
+
+        <div class="footer-note">
+            <p><strong>תודה רבה על השקעת זמנך ומאמציך בפיתוח דור המפקדים הבא של זרוע הים. מחויבותך האישית היא אבן יסוד בעוצמתה של הזרוע וביטחונה של מדינת ישראל.</strong></p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for dynamically adding mentee sections
+        // This is a simplified version. For a robust solution, consider using a frontend framework or more advanced JS patterns.
+        let currentMenteeCount = 2; // Starts with 2 pre-generated sections
+
+        function addMenteeSection() {
+            currentMenteeCount++;
+            const menteesContainer = document.getElementById('mentees_container');
+            const newMenteeDiv = document.createElement('div');
+            newMenteeDiv.classList.add('mentee-section');
+            newMenteeDiv.style.marginTop = '40px';
+            newMenteeDiv.style.paddingTop = '20px';
+            newMenteeDiv.style.borderTop = '1px dashed #ccc';
+
+            newMenteeDiv.innerHTML = `
+                <h3>קצין נחנך ${currentMenteeCount}</h3>
+                <div class="form-group">
+                    <label for="mentee_name_${currentMenteeCount}"><strong>שם מלא:</strong></label>
+                    <input type="text" id="mentee_name_${currentMenteeCount}" name="mentee_name_${currentMenteeCount}" required>
+                </div>
+                <div class="form-group">
+                    <label for="mentee_role_${currentMenteeCount}"><strong>תפקיד קצין נחנך:</strong></label>
+                    <select id="mentee_role_${currentMenteeCount}" name="mentee_role_${currentMenteeCount}" required>
+                        <option value="">בחר תפקיד</option>
+                        <option value="סגן קצמח">סגן קצמ"ח</option>
+                        <option value="סגמד">סגמ"ד</option>
+                        <option value="קצמח">קצמ"ח</option>
+                        <option value="מפקד דבורה">מפקד דבורה</option>
+                        <option value="מפקד סטיל">מפקד סטי"ל</option>
+                        <option value="מסר">מס"ר</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mentee_meetings_${currentMenteeCount}"><strong>מספר מפגשי חניכה ייעודיים שבוצעו עימו ברבעון זה:</strong></label>
+                    <input type="number" id="mentee_meetings_${currentMenteeCount}" name="mentee_meetings_${currentMenteeCount}" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label><strong>נושאי החניכה העיקריים שנדונו עימו (ניתן לבחור מתוך הרשימה ו/או לפרט חופשי):</strong></label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_topics_${currentMenteeCount}" value="לחץ_קבלת_החלטות"> <label>התמודדות עם לחץ / קבלת החלטות במצבי אמת</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_topics_${currentMenteeCount}" value="אחריות_בעלות"> <label>חיזוק אחריות אישית / בעלות על משימה</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_topics_${currentMenteeCount}" value="מקצועיות_כשירות"> <label>פיתוח מקצועיות / כשירות מבצעית</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_topics_${currentMenteeCount}" value="מנהיגות_ניהול_כפיפים"> <label>מנהיגות בקרב צוות / ניהול כפיפים</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_topics_${currentMenteeCount}" value="חוסן_מנטלי"> <label>פיתוח חוסן מנטלי / התמודדות עם אתגרים אישיים</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_topics_${currentMenteeCount}" value="תקשורת_משוב"> <label>שיפור יכולות תקשורת / משוב</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_topics_${currentMenteeCount}" value="ערכי_פיקודי"> <label>פיתוח ערכי / פיקודי</label></div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="mentee_topics_other_${currentMenteeCount}" value="אחר"> <label>אחר (פרט בקצרה):</label>
+                            <input type="text" name="mentee_topics_other_text_${currentMenteeCount}" style="width: auto; flex-grow: 1;">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label><strong>האם תהליך החניכה התמקד ב"חליפה האישית" של קצין זה, תוך התייחסות לנקודות החוזק הייחודיות לו ולפערים שזוהו, באופן שמותאם אישית לצרכיו וסגנון למידתו?</strong></label>
+                    <div class="radio-group">
+                        <div class="radio-item"><input type="radio" name="mentee_personal_fit_${currentMenteeCount}" value="כן"> <label>כן</label></div>
+                        <div class="radio-item"><input type="radio" name="mentee_personal_fit_${currentMenteeCount}" value="במידה_רבה"> <label>במידה רבה</label></div>
+                        <div class="radio-item"><input type="radio" name="mentee_personal_fit_${currentMenteeCount}" value="במידה_חלקית"> <label>במידה חלקית</label></div>
+                        <div class="radio-item"><input type="radio" name="mentee_personal_fit_${currentMenteeCount}" value="לא"> <label>לא</label></div>
+                    </div>
+                    <p class="note">הסבר קצר (אופציונלי):</p>
+                    <textarea name="mentee_personal_fit_explanation_${currentMenteeCount}"></textarea>
+                </div>
+                <div class="form-group">
+                    <label><strong>האם נקבעו יעדי התקדמות אישיים ומדידים עבורו?</strong></label>
+                    <div class="radio-group">
+                        <div class="radio-item"><input type="radio" name="mentee_goals_set_${currentMenteeCount}" value="כן"> <label>כן</label></div>
+                        <div class="radio-item"><input type="radio" name="mentee_goals_set_${currentMenteeCount}" value="לא"> <label>לא</label></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label><strong>האם תהליך החניכה הסתיים, והקצין עובר לתפקיד/שלב המשך?</strong></label>
+                    <div class="radio-group">
+                        <div class="radio-item"><input type="radio" name="mentee_process_ended_${currentMenteeCount}" value="כן"> <label>כן</label></div>
+                        <div class="radio-item"><input type="radio" name="mentee_process_ended_${currentMenteeCount}" value="לא"> <label>לא</label></div>
+                        <div class="radio-item"><input type="radio" name="mentee_process_ended_${currentMenteeCount}" value="טרם_נקבע"> <label>טרם נקבע</label></div>
+                    </div>
+                    <p class="note">אם כן, מהן המלצותיך המעשיות לחונך הבא לטובת המשך תהליך חניכה רציף?</p>
+                    <textarea name="mentee_recommendations_${currentMenteeCount}" rows="1"></textarea>
+                </div>
+                <div class="form-group">
+                    <label><strong>תוכנית עבודה ופיתוח לרבעון הבא (עבור קצין זה):</strong></label>
+                    <div class="radio-group">
+                       <div class="radio-item"><label for="mentee_future_meetings_${currentMenteeCount}">כמה מפגשים ייעודיים הינך מתכנן לקיים עימו ברבעון הבא?</label> <input type="number" id="mentee_future_meetings_${currentMenteeCount}" name="mentee_future_meetings_${currentMenteeCount}" min="0"></div>
+                    </div>
+                    <label>נושאי ליבה מתוכננים למפגשים אלו (ניתן לבחור מתוך הרשימה ו/או לפרט חופשי):</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_${currentMenteeCount}" value="לחץ_קבלת_החלטות"> <label>התמודדות עם לחץ / קבלת החלטות</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_${currentMenteeCount}" value="אחריות_בעלות"> <label>חיזוק אחריות אישית / בעלות</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_${currentMenteeCount}" value="מקצועיות_כשירות"> <label>פיתוח מקצועיות / כשירות מבצעית</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_${currentMenteeCount}" value="מנהיגות_ניהול_כפיפים"> <label>מנהיגות בקרב צוות / ניהול כפיפים</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_${currentMenteeCount}" value="חוסן_מנטלי"> <label>פיתוח חוסן מנטלי / התמודדות עם אתגרים אישיים</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_${currentMenteeCount}" value="תקשורת_משוב"> <label>שיפור יכולות תקשורת / משוב</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="mentee_future_topics_${currentMenteeCount}" value="ערכי_פיקודי"> <label>פיתוח ערכי / פיקודי</label></div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="mentee_future_topics_other_${currentMenteeCount}" value="אחר"> <label>אחר (פרט בקצרה):</label>
+                            <input type="text" name="mentee_future_topics_other_text_${currentMenteeCount}" style="width: auto; flex-grow: 1;">
+                        </div>
+                    </div>
+                </div>
+            `;
+            // Insert the new section before the add mentee button
+            const addMenteeButton = menteesContainer.querySelector('.add-mentee-button');
+            menteesContainer.insertBefore(newMenteeDiv, addMenteeButton);
+
+            // Re-attach listeners for the "other" text inputs (if any)
+            newMenteeDiv.querySelectorAll('input[type="checkbox"][value="אחר"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const otherTextInput = this.nextElementSibling.nextElementSibling;
+                    if (otherTextInput) {
+                        otherTextInput.style.display = this.checked ? 'inline-block' : 'none';
+                        otherTextInput.required = this.checked; // Make required if checked
+                    }
+                });
+                // Initialize display for other text input on load (if it exists)
+                const otherTextInput = checkbox.nextElementSibling.nextElementSibling;
+                if (otherTextInput) {
+                    otherTextInput.style.display = checkbox.checked ? 'inline-block' : 'none';
+                    otherTextInput.required = checkbox.checked;
+                }
+            });
+        }
+
+        // Initialize "other" text input display on page load for initial sections
+        document.querySelectorAll('input[type="checkbox"][value="אחר"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const otherTextInput = this.nextElementSibling.nextElementSibling;
+                if (otherTextInput) {
+                    otherTextInput.style.display = this.checked ? 'inline-block' : 'none';
+                    otherTextInput.required = this.checked;
+                }
+            });
+            // Initialize display for other text input on load (if it exists)
+            const otherTextInput = checkbox.nextElementSibling.nextElementSibling;
+            if (otherTextInput) {
+                otherTextInput.style.display = checkbox.checked ? 'inline-block' : 'none';
+                otherTextInput.required = checkbox.checked;
+            }
+        });
+
+        // Basic validation for required fields on form submission
+        document.querySelector('form').addEventListener('submit', function(event) {
+            let isValid = true;
+            this.querySelectorAll('[required]').forEach(input => {
+                if (!input.value) {
+                    isValid = false;
+                    input.style.borderColor = 'red';
+                    input.reportValidity(); // Show native browser validation message
+                } else {
+                    input.style.borderColor = '#ccc';
+                }
+            });
+            if (!isValid) {
+                alert('נא למלא את כל השדות החובה לפני השליחה.');
+                event.preventDefault(); // Prevent form submission
+            }
+        });
+    </script>
+</body>
+</html>
